@@ -1,17 +1,27 @@
 /* eslint-disable import/order */
 /* eslint-disable import/no-duplicates */
 import React from 'react';
-import { Divider, Drawer } from 'rsuite';
+import { Alert, Divider, Drawer } from 'rsuite';
 import { useProfile } from '../../context/profile.context';
 import { Button } from 'rsuite';
 import EditableInput from '../EditableInput';
+import { database } from '../../misc/firebase';
 
 const Dashboard = ({ onSignOut }) => {
   const { profile } = useProfile();
 
   const onSave = async newData => {
-    // eslint-disable-next-line no-console
-    console.log(newData);
+    const userNicknameRef = database
+      .ref(`/profiles/${profile.uid}`)
+      .child('name');
+
+    try {
+      await userNicknameRef.set(newData);
+
+      Alert.success('Nickname has been Updated', 4000);
+    } catch (err) {
+      Alert.error(err.message, 4000);
+    }
   };
   return (
     <>
