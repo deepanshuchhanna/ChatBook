@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { Tag, Icon, Button, Alert } from 'rsuite';
