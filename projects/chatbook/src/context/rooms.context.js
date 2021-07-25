@@ -1,11 +1,11 @@
-import React, { CreateContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState, useContext } from 'react';
 import { database } from '../misc/firebase';
 import { transformToArrWithId } from '../misc/helpers';
 
-const RoomsContext = CreateContext();
+const RoomsContext = createContext();
 
 export const RoomsProvider = ({ children }) => {
-  const [rooms, setRooms] = useState(null);
+  const [rooms, setRooms] = useState(0);
 
   useEffect(() => {
     const roomListRef = database.ref('rooms');
@@ -15,9 +15,13 @@ export const RoomsProvider = ({ children }) => {
       setRooms(data);
     });
 
-    roomListRef.off();
+    return () => {
+      roomListRef.off();
+    };
   }, []);
   return (
     <RoomsContext.Provider value={rooms}>{children}</RoomsContext.Provider>
   );
 };
+
+export const useRooms = () => useContext(RoomsContext);
