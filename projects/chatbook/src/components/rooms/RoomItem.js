@@ -34,7 +34,7 @@ const RoomItem = ({ room }) => {
             </div>
           </>
         ) : (
-          <span>No Messages Yet..</span>
+          <span>No messages yet..</span>
         )}
       </div>
     </div>
