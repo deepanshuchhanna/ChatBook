@@ -14,7 +14,7 @@ const MessageItem = ({ message }) => {
           className="ml-1"
           size="xs"
         />
-        <span className="ml-2">{author.name}</span>
+        {/* <span className="ml-2">{author.name}</span> */}
         <ProfileInfoBtnModal
           profile={author}
           appearance="link"
@@ -23,7 +23,7 @@ const MessageItem = ({ message }) => {
         <TimeAgo
           datetime={createdAt}
           className="font-normal text-black-45 ml-2"
-        />{' '}
+        />
       </div>
 
       <div>
