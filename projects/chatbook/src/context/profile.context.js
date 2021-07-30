@@ -45,7 +45,8 @@ export const ProfileProvider = ({ children }) => {
         });
 
         database.ref('.info/connected').on('value', snapshot => {
-          if (snapshot.val() === false) {
+          // we use !! to convert it into boolean
+          if (!!snapshot.val() === false) {
             return;
           }
 
